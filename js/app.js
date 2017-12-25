@@ -69,25 +69,53 @@ function drawCountries(countries) {
     let output = "";
 
     for (let country of countries) {
-        let topLevelDomain = "";
+        let languages = "";
         let currencies = "";
+        let timezones = "";
 
-        for (let domain of country.topLevelDomain) {
-            topLevelDomain += domain;
+        for (let language of country.languages) {
+            languages += `${language.name}<br>`;
         }
 
         for (let currency of country.currencies) {
-            currencies += `Code: ${currency.code}, Name: ${currency.name} Symbol: ${currency.symbol}<br>`;
+            currencies += `${currency.code} ${currency.name} ${currency.symbol}<br>`;
         }
+
+        for (let timezone of country.timezones) {
+            timezones += `${timezone}<br>`;
+        }
+
         output += 
-        `<div class="col-lg-4">
+        `<div class="col-lg-4 mb-5">
             <div class="card">
                 <img class="card-img-top" src="${country.flag}" alt="${country.name}">
-                <div class="card-body">
+                <div class="card-header text-center">
                     <h3 class="card-title">${country.name}</h3>
-                    <h5>Capital: ${country.capital}</h5>
-                    <p class="card-text">Top Level Domain: ${topLevelDomain}</p>
-                    <p>Currencies:<br>${currencies}</p>
+                    <h5 class="card-subtitle text-muted">${country.capital}</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table text-center">
+                        <tr>
+                            <td>Population</td>
+                            <td class="text-muted">${country.population} People</td>
+                        </tr>
+                        <tr>
+                            <td>Region</td>
+                            <td class="text-muted">${country.region}</td>
+                        </tr>
+                        <tr>
+                            <td>Languages</td>
+                            <td class="text-muted">${languages}</td>
+                        </tr>
+                        <tr>
+                            <td>Currencies</td>
+                            <td class="text-muted">${currencies}</td>
+                        </tr>
+                        <tr>
+                            <td>Timezones</td>
+                            <td class="text-muted">${timezones}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>`;
@@ -97,6 +125,6 @@ function drawCountries(countries) {
 
 function errorMessage() {
     return `<div class="col-lg-12">
-        <h1 class="alert alert-danger text-center">No Results</h1>
+        <h4 class="alert alert-danger text-center lead"><i class="fa fa-exclamation-circle mr-2"></i>No Results</h4>
     </div>`;
 }
