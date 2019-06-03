@@ -1,2 +1,3 @@
-# countries-api
-search for countries that you looking for
+# Countries API
+
+Search for countries that you looking for
